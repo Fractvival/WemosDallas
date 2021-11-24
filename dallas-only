@@ -1,0 +1,50 @@
+esphome:
+  name: dallas-only
+  platform: ESP8266
+  board: d1
+
+logger:
+
+api:
+  password: "Hotentot1919"
+
+ota:
+  password: "Hotentot1919"
+
+wifi:
+  networks:
+  - ssid: "Vergl"
+    password: "Hovnokleslo105"
+    priority: 0.5
+  - ssid: "Vergl2"
+    password: "Hovnokleslo105"
+    priority: 0.4
+  - ssid: "Cisco"
+    password: "Hotentot1919"
+    priority: 0.3
+  - ssid: "Cisco"
+    password: "Hotentot1919"
+    priority: 0.0
+    hidden: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Dallas-Only"
+    password: "Hotentot1919"
+
+captive_portal:
+
+
+# DS18B20 Temperature Sensor
+dallas:
+    # WEMOS D1 = DATA PIN D5
+    # WEMOS D1 MINI = DATA PIN D2
+  - pin: D5
+    update_interval: 5s
+sensor:
+  - platform: wifi_signal
+    name: "DALLAS WIFI (0xD23C01D0755F9228)"
+    update_interval: 10s
+  - platform: dallas
+    name: "DALLAS TEMP (0xD23C01D0755F9228)"
+    address: 0xD23C01D0755F9228
